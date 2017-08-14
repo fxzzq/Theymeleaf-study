@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link  type="text/css"  rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1>你好：<b th:text="${name}">姓名</b>！</h1>
+<p>现在年龄：<span th:text="${age}"></span></p>
+<hr/>
+<input th:value="${name}" />
+<input th:value="${age gt 30 ?  '中年':'年轻'}" />  <!--gt  >    -->
+<hr/>
+<h1>
+    <b th:text="${name}"> </b>
+    <span th:if="${age ge 30}">中年</span>       <!--ge >=   -->
+    <span th:unless="${age ge 30}">年轻</span>
+</h1>
+<hr/>
+<p th:switch="${age}">
+<p th:case="23">青年</p>
+<p th:case="*">中年</p>
+</p>
+<table style="width: 100%" class="table table-hover">
+<tr>
+    <th>网站名称</th>
+    <th>网址</th>
+    <th>state：index</th>
+    <th>state：count</th>
+    <th>state：size</th>
+    <th>state：current</th>
+    <th>state：even</th>
+    <th>state：odd</th>
+    <th>state：first</th>
+    <th>state：last</th>
+</tr>
+<tr th:each="obj,objVs: ${datas}">
+ <td th:text="${obj.name}">网站名称</td>
+    <td><a  th:text="${obj.url}" th:href="@{${obj.url}}">链接</a> </td>
+
+    <td th:text="${objVs.index}">状态序号，从0开始</td>
+    <td th:text="${objVs.count}">状态序号，从1开始</td>
+    <td th:text="${objVs.size}">状态size</td>
+    <td th:text="${objVs.current.name}">状态 当前对象</td>
+    <td th:text="${objVs.even}">状态 奇数</td>
+    <td th:text="${objVs.odd}">状态 偶数</td>
+    <td th:text="${objVs.first}">状态 是否第一条</td>
+    <td th:text="${objVs.last}">状态 是否最后一条</td>
+
+</tr>
+
+</table>
+<!--内联文本 [[  ]]   -->
+<p th:inline="text">Hello, [[${name}]]!</p>
+<!--脚本内联-->
+<!--1.脚本注释/* */中的内容会在浏览器端静态打开页面时被忽略；
+2.thymeleaf解析模板时会把后面的文本'Sebastian'移除.-->
+<!--    <1>javascript附加代码
+           语法：/!*[+   +]*                     -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var username = /*[[${name}]]*/ 'Sebastian';
+    var age = /*[[${age}]]*/ 'Sebastian';
+
+    /*]]>*/
+
+    /*[+
+    var msg  = 'This is a working application';
+
+    +]*/
+    alert(username+age+msg);
+</script>
+
+
+
+</body>
+</html>

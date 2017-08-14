@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/js/jquery-1.12.4.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link  type="text/css"  rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<p th:text="'Hello,我是 ' + ${name} + '!'">xzq</p>
+<p th:text="${#locale.country}">US</p>
+<p th:text="${#calendars.format(curDate,'dd MMMM yyyyy')}"></p>
+<p th:text="${#dates.format(curDate)}"></p>
+<p th:text="${#dates.format(curDate, 'dd/MMM/yyyy HH:mm')}"></p>
+<p th:text="${curDate}"></p>
+<p th:text="${#calendars.format(curDate,'dd MMMM yyyy')}"></p>
+<span th:text="${#dates.format(curDate, 'yyyy-MM-dd HH:mm:ss')}">2017-08-13 20:15:54</span>
+<button class="btn btn-success">李琦君你发发发感觉78999</button>
+<button class="btn btn-success">李星熠陈瑞华你感觉78999</button>
+</body>
+</html>
