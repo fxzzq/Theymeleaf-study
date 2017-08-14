@@ -1,2 +1,2 @@
-# [Thymeleaf 之 页面模板应用]
+# Thymeleaf 之 页面模板应用
 
